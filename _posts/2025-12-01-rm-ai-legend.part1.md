@@ -676,8 +676,8 @@ public void FindForExploder(GuidedExploderItemModel exploder)
 
 ## 阶段产出
 
-- 📦 [csharp_code.zip](https://github.com/lxraa/lxraa.github.io/releases/download/2025-12-01-rm-ai-legend-assets/csharp_code.zip) - AI还原的C#代码（部分核心类）
-- 📦 [Propeller棋子解析.zip](https://github.com/lxraa/lxraa.github.io/releases/download/2025-12-01-rm-ai-legend-assets/Propeller棋子解析.zip) - 业务逻辑解析文档
+- 📦 [csharp_code.zip](/assets/game-reverse/001/csharp_code.zip) - AI还原的C#代码（部分核心类）
+- 📦 [Propeller棋子解析.zip](/assets/game-reverse/001/Propeller棋子解析.zip) - 业务逻辑解析文档
 
 ---
 
