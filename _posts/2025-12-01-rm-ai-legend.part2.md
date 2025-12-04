@@ -228,6 +228,7 @@ graph TD
 - 📦 [csharp_code.zip](/assets/game-reverse/001/csharp_code.zip) - AI还原的C#代码
 - 📦 [Propeller棋子解析.zip](/assets/game-reverse/001/Propeller棋子解析.zip) - 螺旋桨系统完整分析文档
 - 📦 [proto-fbs.zip](/assets/game-reverse/001/proto-fbs.zip) - FlatBuffers协议文件
+- 📦 [tools.zip](/assets/game-reverse/001/tools.zip) - 关卡编辑器
 
 ### 核心发现
 
