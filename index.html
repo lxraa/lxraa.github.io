@@ -1,0 +1,101 @@
+---
+layout: default
+background: '/img/environment/home/my_bedroom.png'
+---
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ page.background }}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>lxraa 的档案室</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      
+      <!-- 观前须知 -->
+      <div style="margin-bottom: 3rem; padding: 1.5rem; background: #f8f9fa; border-left: 4px solid #333;">
+        <h3 style="margin-top: 0; font-size: 1.3rem; color: #333; margin-bottom: 1.5rem;">观前须知</h3>
+        
+        <p style="line-height: 1.8; color: #666; margin-bottom: 1rem;">
+          大家好，我是lxraa，一名灰帽子。
+        </p>
+
+        <p style="line-height: 1.8; color: #666; margin-bottom: 1rem;">
+          这个档案室存放着我的技术笔记。
+          想了解我为什么做这些，<a href="/about.html" style="color: #0056b3; text-decoration: none; border-bottom: 1px solid #0056b3;">可以看看我的故事</a>。
+        </p>
+
+        <p style="line-height: 1.8; color: #555; margin-bottom: 1rem;">
+          <strong>阅读方式</strong>：每篇笔记都是独立的案例，可以单篇阅读。技术细节会尽量写得通俗，但如果你完全不懂编程，可能会看得有点吃力。不过没关系，跳过技术部分，把它当故事看也行。
+        </p>
+
+        <hr style="border: 0; border-top: 1px solid #dee2e6; margin: 1.5rem 0;">
+
+        <p style="line-height: 1.6; color: #666; margin-bottom: 0.5rem; font-size: 0.9rem;">
+          <strong>声明</strong>：所有内容基于真实技术分析改编，仅用于学习研究。涉及的游戏、公司名称均作脱敏处理。
+        </p>
+      </div>
+
+      <!-- 系列卡片 -->
+      <h2 style="margin-bottom: 2rem; font-size: 1.8rem;">专辑列表</h2>
+
+      <!-- 游戏逆向笔记 -->
+      <div class="series-card" style="margin-bottom: 2rem; padding: 2rem; border: 1px solid #ddd; border-radius: 8px; transition: all 0.3s;">
+        <h3 style="margin-top: 0;">
+          <a href="/series/game-reverse/" style="color: #333; text-decoration: none;">
+            📖 游戏逆向笔记
+          </a>
+        </h3>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          游戏逆向分析技术分享。
+        </p>
+        <div style="font-size: 0.9rem; color: #999;">
+          {% assign game_posts = site.categories["游戏逆向笔记"] | size %}
+          <span>📝 {{ game_posts }} 篇文章</span>
+          <a href="/series/game-reverse/" style="float: right; color: #0056b3;">查看全部 →</a>
+        </div>
+      </div>
+
+      <!-- 可以继续添加其他系列 -->
+      <!-- 
+      <div class="series-card" style="margin-bottom: 2rem; padding: 2rem; border: 1px solid #ddd; border-radius: 8px;">
+        <h3 style="margin-top: 0;">
+          <a href="/series/tools/" style="color: #333; text-decoration: none;">
+            🔧 工具开发
+          </a>
+        </h3>
+        <p style="color: #666; line-height: 1.6; margin-bottom: 1rem;">
+          开源逆向分析工具与脚本，提高逆向效率的利器。
+        </p>
+        <div style="font-size: 0.9rem; color: #999;">
+          {% assign tool_posts = site.categories["工具开发"] | size %}
+          <span>📝 {{ tool_posts }} 篇文章</span>
+          <a href="/series/tools/" style="float: right; color: #0056b3;">查看全部 →</a>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </div>
+</div>
+
+<style>
+.series-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+  border-color: #999;
+}
+.series-card h3 a:hover {
+  color: #0056b3;
+}
+</style>

@@ -1,0 +1,108 @@
+---
+layout: page
+title: 游戏逆向笔记
+description: 
+background: '/img/environment/home/attic.jpg'
+permalink: /series/game-reverse/
+---
+
+<!-- 系列简介 -->
+<div style="margin: 2rem 0; padding: 2rem; background: #f8f9fa; border-radius: 8px;">
+  
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    大家好，我是lxraa，一个灰帽子。
+  </p>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    毕业之后啃老三年，每天晚上都泡在网吧打游戏。直到有一天，我在我爹的旧硬盘里，发现了另一个世界。
+  </p>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    他教会了我怎么拆解代码，怎么看懂堆栈，怎么在数字世界里找到藏起来的东西。
+  </p>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    我学会之后，第一反应不是去黑什么网站，而是想起了小时候的一个画面。
+  </p>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    那年我打开魔兽争霸3冰封王座，主菜单是座被暴风雪吞没的雪山，冰封王座的尖塔在风雪里若隐若现。我盯着那个画面看了很久，突然冒出个念头——这暴风雪是怎么做出来的？那些会动的阴影，那些飘落的雪花，到底藏在哪里？
+  </p>
+
+  <div style="text-align: center; margin: 2rem 0;">
+    <img src="/img/war3.png" alt="魔兽争霸3冰封王座主菜单" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <p style="font-size: 0.9rem; color: #666; margin-top: 0.8rem; font-style: italic;">魔兽争霸3冰封王座主菜单</p>
+  </div>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    那是我第一次想拆开游戏看看里面是什么。
+  </p>
+
+  <p style="font-size: 1.05rem; line-height: 1.8; color: #333;">
+    于是我开始逆向游戏，把这些案子记录下来，起了个名字叫《游戏逆向笔记》。
+  </p>
+
+
+</div>
+
+<hr style="margin: 3rem 0;">
+
+<!-- 系列文章列表 -->
+<h2>文章列表</h2>
+
+{% assign posts = site.categories["游戏逆向笔记"] %}
+
+{% if posts and posts.size > 0 %}
+  {% assign sorted_posts = posts | sort: "date" | reverse %}
+  <div class="post-list">
+  {% for post in sorted_posts %}
+    <div class="post-preview" style="padding: 1.5rem 0; border-bottom: 1px solid #eee;">
+      <a href="{{ post.url }}">
+        <h3 class="post-title" style="margin-bottom: 0.5rem;">
+          {{ post.title }}
+        </h3>
+        {% if post.subtitle %}
+        <h4 class="post-subtitle" style="font-weight: normal; color: #666; margin-bottom: 0.5rem;">
+          {{ post.subtitle }}
+        </h4>
+        {% endif %}
+      </a>
+      <p class="post-meta" style="font-size: 0.9rem; color: #999; margin: 0;">
+        发布于 {{ post.date | date: "%Y年%m月%d日" }}
+        {% if post.tags %}
+          <span style="margin-left: 1rem;">
+          {% for tag in post.tags %}
+            <span class="badge badge-secondary" style="background: #6c757d; padding: 0.25rem 0.5rem; border-radius: 3px; font-size: 0.8rem; margin-right: 0.25rem;">{{ tag }}</span>
+          {% endfor %}
+          </span>
+        {% endif %}
+      </p>
+    </div>
+  {% endfor %}
+  </div>
+{% else %}
+  <p style="color: #999; font-style: italic;">暂无文章，敬请期待...</p>
+{% endif %}
+
+
+
+<div style="text-align: center;">
+  <a href="/" class="btn btn-primary">返回首页</a>
+</div>
+
+<p style="text-align: center; font-size: 0.85rem; color: #999; margin-top: 2rem;">
+  <strong>声明</strong>：所有逆向分析仅用于学习研究，不涉及任何商业用途或破坏行为。
+</p>
+
+<style>
+.post-preview a {
+  text-decoration: none;
+  color: inherit;
+}
+.post-preview:hover .post-title {
+  color: #0056b3;
+}
+.post-preview:last-child {
+  border-bottom: none;
+}
+</style>

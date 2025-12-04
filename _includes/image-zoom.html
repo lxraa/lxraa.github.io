@@ -1,0 +1,29 @@
+<!-- Medium Zoom CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.css">
+
+<style>
+.medium-zoom-overlay {
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.medium-zoom-image {
+  z-index: 1000;
+  cursor: zoom-in;
+}
+
+.medium-zoom-image--opened {
+  cursor: zoom-out;
+}
+
+/* 为文章内的图片添加hover效果 */
+article img, .post-content img, .container img {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+article img:hover, .post-content img:hover, .container img:hover {
+  opacity: 0.9;
+}
+</style>
+

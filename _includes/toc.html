@@ -1,0 +1,216 @@
+<!-- 悬浮目录 -->
+<div id="toc-container" style="position: fixed; top: 100px; right: 20px; width: 260px; max-height: 70vh; overflow-y: auto; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 100; display: none;">
+  <div style="font-weight: bold; font-size: 0.9rem; margin-bottom: 0.8rem; color: #333; border-bottom: 2px solid #333; padding-bottom: 0.5rem;">
+    目录
+  </div>
+  <nav id="toc-nav"></nav>
+</div>
+
+<style>
+/* 目录样式 */
+#toc-nav {
+  font-size: 0.85rem;
+}
+
+#toc-nav a {
+  display: block;
+  padding: 0.4rem 0;
+  color: #666;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+  transition: all 0.2s;
+}
+
+#toc-nav a:hover {
+  color: #0056b3;
+  border-left-color: #0056b3;
+  padding-left: 0.8rem;
+}
+
+#toc-nav a.active {
+  color: #0056b3;
+  font-weight: bold;
+  border-left-color: #0056b3;
+  background: #f8f9fa;
+  padding-left: 0.8rem;
+}
+
+/* h3级别缩进 */
+#toc-nav a.toc-h3 {
+  padding-left: 1.2rem;
+  font-size: 0.8rem;
+}
+
+#toc-nav a.toc-h3:hover,
+#toc-nav a.toc-h3.active {
+  padding-left: 1.5rem;
+}
+
+/* 滚动条样式 */
+#toc-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+#toc-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#toc-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+#toc-container::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* 响应式：小屏幕隐藏 */
+@media (max-width: 1200px) {
+  #toc-container {
+    display: none !important;
+  }
+}
+</style>
+
+<script>
+// 立即执行，不等DOM完全加载
+(function() {
+  function initTOC() {
+    const tocContainer = document.getElementById('toc-container');
+    const tocNav = document.getElementById('toc-nav');
+    
+    if (!tocContainer || !tocNav) {
+      setTimeout(initTOC, 100);
+      return;
+    }
+    
+    // 获取文章内容区域的所有h2和h3标题（排除header部分）
+    // 正文内容在.container > .row > .col-lg-8里
+    const contentContainers = document.querySelectorAll('.container');
+    let contentArea = null;
+    
+    // 找到包含正文的container（不是header里的）
+    for (let i = 0; i < contentContainers.length; i++) {
+      const container = contentContainers[i];
+      if (!container.closest('header')) {
+        const col = container.querySelector('.col-lg-8');
+        if (col) {
+          contentArea = col;
+          break;
+        }
+      }
+    }
+    
+    if (!contentArea) {
+      setTimeout(initTOC, 100);
+      return;
+    }
+    
+    // 只选择文章内容中的标题，排除前面的元数据部分
+    const allHeadings = contentArea.querySelectorAll('h2, h3');
+    const headings = [];
+    
+    allHeadings.forEach(function(heading) {
+      // 排除header中的标题和系列导航中的标题
+      const isInHeader = heading.closest('header') !== null;
+      const isInSeriesNav = heading.closest('[class*="series"]') !== null;
+      if (!isInHeader && !isInSeriesNav) {
+        headings.push(heading);
+      }
+    });
+    
+    if (headings.length === 0) return;
+    
+    // 清空目录（防止重复生成）
+    tocNav.innerHTML = '';
+    
+    // 生成目录
+    headings.forEach(function(heading, index) {
+      // 为标题添加ID（如果没有）
+      if (!heading.id) {
+        heading.id = 'heading-' + index;
+      }
+      
+      // 创建目录链接
+      const link = document.createElement('a');
+      link.href = '#' + heading.id;
+      link.textContent = heading.textContent;
+      link.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-h3' : 'toc-h2';
+      link.dataset.target = heading.id;
+      
+      // 平滑滚动
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // 更新URL hash但不触发跳转
+        history.pushState(null, null, '#' + heading.id);
+      });
+      
+      tocNav.appendChild(link);
+    });
+    
+    // 显示目录
+    tocContainer.style.display = 'block';
+    
+    // 滚动监听：高亮当前章节
+    let ticking = false;
+    
+    function updateActiveLink() {
+      const scrollPosition = window.scrollY + 150; // 偏移量
+      
+      let currentHeading = null;
+      
+      for (let i = 0; i < headings.length; i++) {
+        if (headings[i].offsetTop <= scrollPosition) {
+          currentHeading = headings[i];
+        }
+      }
+      
+      // 移除所有active类
+      const links = tocNav.querySelectorAll('a');
+      for (let i = 0; i < links.length; i++) {
+        links[i].classList.remove('active');
+      }
+      
+      // 添加active类到当前章节
+      if (currentHeading) {
+        const activeLink = tocNav.querySelector('a[data-target="' + currentHeading.id + '"]');
+        if (activeLink) {
+          activeLink.classList.add('active');
+          
+          // 确保active项在可视区域内
+          const containerRect = tocContainer.getBoundingClientRect();
+          const linkRect = activeLink.getBoundingClientRect();
+          
+          if (linkRect.top < containerRect.top || linkRect.bottom > containerRect.bottom) {
+            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      }
+      
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveLink);
+        ticking = true;
+      }
+    });
+    
+    // 初始化时更新一次
+    updateActiveLink();
+  }
+  
+  // 尝试多种方式初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTOC);
+  } else {
+    initTOC();
+  }
+})();
+</script>
+

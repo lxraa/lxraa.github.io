@@ -1,0 +1,228 @@
+namespace *****.FlatLevel;
+
+// 基本点结构
+table FPoint {
+  x:int;
+  y:int;
+}
+
+// 带方向的点结构
+table FDirectedPoint {
+  x:int;
+  y:int;
+  direction:int;
+}
+
+// 带方向的点组结构
+table FDirectedPointGroupData {
+  cells:[FDirectedPoint];
+}
+
+// 单元格组数据
+table FCellGroupData {
+  cells:[FPoint];
+}
+
+// 磁铁组数据
+table FMagnetGroupData {
+  cells:[FMagnetPoint];
+}
+
+// 磁铁点数据
+table FMagnetPoint {
+  x:int;
+  y:int;
+  direction:int;
+}
+
+// 百叶窗组数据
+table FBlindsGroupData {
+  cells:[FPoint];
+  direction:int;
+}
+
+// 目标数据
+table FGoalData {
+  goal:int;
+  count:int;
+  is_from_settings:bool;
+  board_id:int;
+}
+
+// 限制数据
+table FLimitData {
+  id:int;
+  count:int;
+}
+
+// 水数据
+table FWaterData {
+  cells:[FPoint];
+  direction:int;
+}
+
+// 窗帘数据
+table FCurtainData {
+  cells:[FPoint];
+  level:int;
+}
+
+// 钻头数据
+table FDrillData {
+  cells:[FPoint];
+  direction:int;
+  level:int;
+}
+
+// 移位器数据
+table FShifterData {
+  cells:[FPoint];
+  direction:int;
+}
+
+// 密码锁数据
+table FCryptexData {
+  cells:[FPoint];
+  direction:int;
+  level:int;
+  rotation:int;
+}
+
+// 药水颜色
+table FPotionColor {
+  id:int;
+  color:int;
+}
+
+// 物品数量
+table FItemCount {
+  id:int;
+  count:int;
+}
+
+// 插槽配置
+table FSlotConfig {
+  cells:[FPoint];
+  id:int;
+}
+
+// 袋子配置
+table FPouchConfig {
+  max_count:int;
+  can_fall:bool;
+}
+
+// 单元格
+table FTiledCell {
+  fill_type:int;
+  is_predefined:bool;
+  grass:int;
+  honey:int;
+  curtain:int;
+  chain:int;
+  roof:int;
+  jelly:int;
+  treasuremap:int;
+  ceramic:int;
+  mushroom_soil:int;
+  blinds:int;
+  water_soil:int;
+  force_field:int;
+  cryptex:int;
+  ice_border:int;
+}
+
+// 网格
+table FTiledGrid {
+  items:[int];
+  cells:[FTiledCell];
+  width:int;
+  height:int;
+}
+
+// 预定义元素
+table FTiledPredefined {
+  x:int;
+  y:int;
+  ids:[int];
+}
+
+// 集合元素
+table FTiledSetElement {
+  id:int;
+  create_ratio:int;
+}
+
+// 集合最大物品数量
+table FTiledSetMaxItemCount {
+  id:int;
+  max_count:int;
+}
+
+// 集合
+table FTiledSet {
+  name:string;
+  elements:[FTiledSetElement];
+  can_fall:bool;
+  create_ratio:int;
+  target_columns:[int];
+  bird_max:int;
+  frog_max:int;
+  target_fills:[int];
+  target_fill_ratios:[int];
+  max_item_counts:[FTiledSetMaxItemCount];
+}
+
+// 主要的关卡结构
+table FTiledLevel {
+  name:string;
+  move:int;
+  goals:[FGoalData];
+  grid:FTiledGrid;
+  predefined:[FTiledPredefined];
+  sets:[FTiledSet];
+  colors:[int];
+  counts:[FItemCount];
+  potion_colors:[FPotionColor];
+  low_match:[int];
+  curtains:[FCurtainData];
+  cup_shelves:[FCellGroupData];
+  soil_groups:[FCellGroupData];
+  drills:[FDrillData];
+  light_bulb_color_order:[int];
+  chain_count:int;
+  propeller_ignores_chain:bool;
+  pouch_config:FPouchConfig;
+  limits:[FLimitData];
+  propeller_ignores_drill:bool;
+  jelly_receivable_cell_count:int;
+  has_hole_in_grid:bool;
+  treasuremaps:[FCellGroupData];
+  slots:[FSlotConfig];
+  cage_count:int;
+  magnet_groups:[FMagnetGroupData];
+  scroll:bool;
+  conveyor_belts:[FMagnetGroupData];
+  coils:[FCurtainData];
+  candy_cane_groups:[FMagnetGroupData];
+  tablet_item_groups:[FCellGroupData];
+  ivy_item_groups:[FMagnetGroupData];
+  blinds_groups:[FBlindsGroupData];
+  water_data:FWaterData;
+  shifter_grids:[FShifterData];
+  porcelain_groups:[FDirectedPointGroupData];
+  magic_gem:[FCellGroupData];
+  magic_gem_color_order:[int];
+  ancient_vaults:[FCurtainData];
+  force_field_groups:[FCellGroupData];
+  logs:[FCurtainData];
+  propeller_ignores_log:bool;
+  pin_groups:[FCellGroupData];
+  cryptexes:[FCryptexData];
+  power_cube_groups:[FCellGroupData];
+  potion_tube_groups:[FDirectedPointGroupData];
+  cuckoo_groups:[FCellGroupData];
+  sapphires:[FCurtainData];
+}
+
+root_type FTiledLevel; 
