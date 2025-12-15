@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "国王是AI？程序员的都市传说（下）"
-subtitle: "游戏逆向笔记001-下篇"
+title: "国王是AI？程序员的都市传说（下）| 游戏逆向笔记001"
+subtitle: "Roy*l M**代码逻辑逆向分析"
 date: 2025-12-01 00:00:01 +0800
 author: "lxraa"
-header-img: "/img/bg-post.jpg"
+background: "/assets/game-reverse/001/background2.png"
 catalog: true
 categories: ["游戏逆向笔记"]
 tags:

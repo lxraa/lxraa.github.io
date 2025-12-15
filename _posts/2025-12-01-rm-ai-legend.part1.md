@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "国王是AI？程序员的都市传说（上）"
-subtitle: "游戏逆向笔记001-上篇"
+title: "国王是AI？程序员的都市传说（上）|游戏逆向笔记001"
+subtitle: "Roy*l M**代码逻辑逆向分析"
 date: 2025-12-01 00:00:00 +0800
 author: "lxraa"
-header-img: "/img/bg-post.jpg"
+background: "/assets/game-reverse/001/background1.jpg"
 catalog: true
 categories: ["游戏逆向笔记"]
 tags:
@@ -33,6 +33,11 @@ tags:
 台下一片昏昏欲睡。
 
 我端了杯咖啡，拿了两块曲奇饼，打算找个角落坐着混一会儿就走。
+
+<figure class="figure">
+  <img src="/assets/game-reverse/001/cafe.png" class="figure-img img-fluid rounded shadow-sm" alt="咖啡馆技术沙龙" loading="lazy">
+  <figcaption class="figure-caption text-center">咖啡馆里的技术沙龙</figcaption>
+</figure>
 
 结果刚坐下，旁边一个戴黑框眼镜的中年程序员突然凑过来，压低声音说：
 
@@ -109,8 +114,7 @@ tags:
 > **任务名称**：Roy\*l M\*\* 螺旋桨棋子算法验证  
 > **起因**：老张的都市传说  
 > **目标**：证明国王不是AI  
-> **预计耗时**：一周  
-> **实际耗时**：一个月
+> **预计耗时**：两周
 
 ## 二、凌晨两点的电话
 
